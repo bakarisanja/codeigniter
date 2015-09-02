@@ -1,5 +1,17 @@
+<div class="col-md-7" style="float:left">
 <?php
-echo "<table border='1'>";
+echo "<table class='table table-striped'>";
+echo"     
+<tr>
+    <td>user id</td>
+    <td>first name</td> 
+    <td>last name</td>
+    <td>date of birth</td>
+    <td>country</td> 
+    <td>ip adress</td>
+    <td>username</td>
+</tr>
+    ";
 for($i = 0; $i < count($result); $i++){
     echo"     
   <tr>
@@ -14,3 +26,6 @@ for($i = 0; $i < count($result); $i++){
   </tr>
     ";
     }
+echo "</table>";
+?>
+</div>

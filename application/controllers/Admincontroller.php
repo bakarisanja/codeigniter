@@ -3,20 +3,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * class admincontroller
  */
-class Admincontroller extends CI_Controller {
+class Admincontroller extends MY_Controller {
 
     /**
      * load users from database and shows them
      */
 	public function index()
 	{
-		$this->load->view('navigation');
-
-		$this->load->model('User_model');
-		$result = $this->User_model->getAll();
-		$data['result'] = $result;
-		
-		$this->load->view('index',$data);
+        $this->load->model('User_model');
+        $result = $this->User_model->getAll();
+		$this->data['result'] = $result;
+        $this->middle = 'home';
+        $this->layout();
 	}
 
     /**
@@ -24,8 +22,8 @@ class Admincontroller extends CI_Controller {
      */
 	public function create()
 	{
-		$this->load->view('navigation');
-		$this->load->view('create');
+        $this->middle = 'create';
+        $this->layout();
 	}
 
     /**
@@ -54,11 +52,10 @@ class Admincontroller extends CI_Controller {
             curl_setopt_array($ch, $curlConfig);
             $result = curl_exec($ch);
             curl_close($ch);
-
             $result = json_decode($result);
-            $data['result'] = $result;
-            $this->load->view('navigation');
-            $this->load->view('create',$data);
+            $this->data['result'] = $result;
+            $this->middle = 'create';
+            $this->layout();
         }
     }
 
@@ -68,11 +65,11 @@ class Admincontroller extends CI_Controller {
      */
     public function delete()
     {
-        $this->load->view('navigation');
-        $data['id'] = $this->input->get('id');
-        $data['username'] = $this->input->get('username');
-        $data['token'] = $this->input->get('token');
-        $this->load->view('delete',$data);
+        $this->data['id'] = $this->input->get('id');
+        $this->data['username'] = $this->input->get('username');
+        $this->data['token'] = $this->input->get('token');
+        $this->middle = 'delete';
+        $this->layout();
     }
 
     /**
@@ -91,14 +88,20 @@ class Admincontroller extends CI_Controller {
                     'token'    => $_POST['del_token']
                 )
         );
-        var_dump($_POST);
         curl_setopt_array($ch, $curlConfig);
         $result = curl_exec($ch);
         curl_close($ch);
         $result = json_decode($result);
-
         if ($result->error) {
-            echo $result->error_message;
+            $this->data['result'] = $result->error_message;
+
+            $this->data['id'] = $_POST['del_id'];
+            $this->data['token'] = $_POST['del_token'];
+            $this->data['password'] = $_POST['del_password'];
+            $this->data['username'] = $_POST['del_username'];
+
+            $this->middle = 'delete';
+            $this->layout();
         } else {
             redirect('admincontroller/index');
         }

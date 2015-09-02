@@ -1,3 +1,4 @@
+<div class="col-md-4" style="float:left; border:1px solid silver;">
 <?php
     if(!empty($result)){
         echo"<br />";
@@ -8,27 +9,35 @@
       }
     }
 ?>
-<form action="actioncreate" method="post">
-    <label>First name:</label><br>
+<form role="form" action="actioncreate" method="post">
+  <div class="form-group">
+    <label for="first_name">First name:</label><br>
     <input type="text" name="first_name">
-    <br>
-    <label>Last name:</label><br>
+  </div>
+  <div class="form-group">
+    <label for="last_name">Last name:</label><br>
     <input type="text" name="last_name">
-    <br>
-    <label>date of birth:</label><br>
+  </div>
+  <div class="form-group">
+    <label for="date_of_birth">date of birth:</label><br>
     <input type="text" name="date_of_birth">
-    <br>
-    <label>country:</label><br>
+  </div>
+  <div class="form-group">
+    <label for="country">country:</label><br>
     <input type="text" name="country">
-    <br>
-    <label>username:</label><br>
+  </div>
+  <div class="form-group">
+    <label for="username">username:</label><br>
     <input type="text" name="username">
-    <br>
-    <label>password:</label><br>
+  </div>
+  <div class="form-group">
+    <label for="password">password</label><br>
     <input type="password" name="password">
-    <br>
-    <label>email:</label><br>
+  </div>
+  <div class="form-group">
+    <label for="emai">email</label><br>
     <input type="text" name="email">
-    <br>
-    <input type="submit" value="submit">
+  </div>
+  <button type="submit" class="btn btn-default" value="submit">Submit</button>
 </form>
+</div>
