@@ -31,32 +31,31 @@ class Admincontroller extends MY_Controller {
      * @return [type] [description]
      */
     public function actionCreate()
-    {
-       if(!empty($this->input->post())){
+    { 
+        if(!empty($_POST)){
             $ch = curl_init();
             $curlConfig = array(
-                CURLOPT_URL            => "http://localhost/slim/register",
-                CURLOPT_POST           => true,
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_POSTFIELDS     => array(
-                    'first_name'    => $_POST['first_name'],
-                    'last_name'     => $_POST['last_name'],
-                    'date_of_birth' => $_POST['date_of_birth'],
-                    'country'       => $_POST['country'],
-                    'username'      => $_POST['username'],
-                    'password'      => $_POST['password'],
-                    'email'         => $_POST['email'],
-                    'ip'            => $_SERVER['REMOTE_ADDR']
-                    )
-                );
-            curl_setopt_array($ch, $curlConfig);
-            $result = curl_exec($ch);
-            curl_close($ch);
-            $result = json_decode($result);
-            $this->data['result'] = $result;
-            $this->middle = 'create';
-            $this->layout();
-        }
+            CURLOPT_URL            => "http://localhost/slim/register",
+            CURLOPT_POST           => true,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_POSTFIELDS     => array(
+                'first_name'    => $_POST['first_name'],
+                'last_name'     => $_POST['last_name'],
+                'date_of_birth' => $_POST['date_of_birth'],
+                'country'       => $_POST['country'],
+                'username'      => $_POST['username'],
+                'password'      => $_POST['password'],
+                'email'         => $_POST['email'],
+                'ip'            => $_SERVER['REMOTE_ADDR']
+                )
+            );
+        curl_setopt_array($ch, $curlConfig);
+        $result = curl_exec($ch);
+        curl_close($ch);
+        header('Content-Type: application/json; charset=utf-8');
+        echo $result;
+        exit();
+        } 
     }
 
     /**

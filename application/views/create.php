@@ -1,15 +1,6 @@
 <div class="col-md-4" style="float:left; border:1px solid silver;">
-<?php
-    if(!empty($result)){
-        echo"<br />";
-      if($result->error == true){
-        echo $result->error_message;
-      }else{
-        echo $result->username." is inserted";
-      }
-    }
-?>
-<form role="form" action="actioncreate" method="post">
+<div id='milos'></div>
+<form role="form" action="" method="post" id="createForm">
   <div class="form-group">
     <label for="first_name">First name:</label><br>
     <input type="text" name="first_name">
