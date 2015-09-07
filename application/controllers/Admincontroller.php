@@ -59,19 +59,6 @@ class Admincontroller extends MY_Controller {
     }
 
     /**
-     * accept data and sendig it to delete view
-     * @return [type] [description]
-     */
-    public function delete()
-    {
-        $this->data['id'] = $this->input->get('id');
-        $this->data['username'] = $this->input->get('username');
-        $this->data['token'] = $this->input->get('token');
-        $this->middle = 'delete';
-        $this->layout();
-    }
-
-    /**
      * [actionDelete description]
      * dalete a user over slim... 
      */
@@ -82,28 +69,16 @@ class Admincontroller extends MY_Controller {
             CURLOPT_POST           => true,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_POSTFIELDS     => array(
-                    'password' => $_POST['del_password'],
-                    'username' => $_POST['del_username'],
-                    'token'    => $_POST['del_token']
+                    'password' => $_POST['password'],
+                    'username' => $_POST['username'],
+                    'token'    => $_POST['token']
                 )
         );
         curl_setopt_array($ch, $curlConfig);
         $result = curl_exec($ch);
         curl_close($ch);
-        $result = json_decode($result);
-        if ($result->error) {
-            $this->data['result'] = $result->error_message;
-
-            $this->data['id'] = $_POST['del_id'];
-            $this->data['token'] = $_POST['del_token'];
-            $this->data['password'] = $_POST['del_password'];
-            $this->data['username'] = $_POST['del_username'];
-
-            $this->middle = 'delete';
-            $this->layout();
-        } else {
-            redirect('admincontroller/index');
-        }
-        
+        header('Content-Type: application/json; charset=utf-8');
+        echo $result;
+        exit(); 
     }
 }

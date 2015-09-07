@@ -27,8 +27,10 @@
  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src=<?php echo base_url()."assets/js/bootstrap.min.js"?>></script>
     <script src=<?php echo base_url()."assets/js/jquery-2.1.4.js"?>></script>
+    <script src=<?php echo base_url()."assets/js/bootstrap.min.js"?>></script>
+    <script src=<?php echo base_url()."assets/js/bootbox.min.js"?>></script>
+    <script src=<?php echo base_url()."assets/js/delete.js"?>></script>
     <script src=<?php echo base_url()."assets/js/actioncreate.js"?>></script>
 </body>
 </html>

@@ -4,7 +4,8 @@
  * @return json
  */
 $(document).ready(function() {
-    function processForm (event){
+    function processForm (event)
+    {
         $.ajax({
             url: 'actionCreate',
             dataType: 'json',
@@ -17,6 +18,8 @@ $(document).ready(function() {
                     $('#milos').html(data.error_message);
                 }else{
                     $('#milos').html(data.username+' is created!');
+                    $('#createForm')[0].reset();
+
                 }
             },
             error: function (jqXhr, textStatus, errorThrown)
